@@ -19,11 +19,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: {}
+    user: {},
+    logs: []
   },
   mutations: {
     SETUSER(state, user) {
       state.user = user
+    },
+    setLogs(state, logs) {
+      state.logs = logs
     }
   },
   actions: {
@@ -43,6 +47,11 @@ export default new Vuex.Store({
         .catch(err => {
           router.push({ name: 'auth' })
         })
+    },
+    getAllLogs({ commit }) {
+      api.get('logs')
+        .then(res => commit('setLogs', res.data))
+
     }
 
   }
