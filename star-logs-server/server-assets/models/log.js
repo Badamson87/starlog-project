@@ -6,11 +6,11 @@ let schemaName = 'Log'
 
 
 let schema = new Schema({
-  title: {type: String},
-  body: { type: String},
-  author: {type: ObjectId, ref: 'User'},
-  ship: {type: ObjectId, ref: 'Ship'},
-  starDate: {type: Number, default: Date.now(), required: true}
+  title: { type: String, required: true },
+  body: { type: String, required: true },
+  author: { type: ObjectId, ref: 'User' },
+  ship: { type: ObjectId, ref: 'Ship' },
+  starDate: { type: Number, default: Date.now(), required: true }
 })
 
 module.exports = mongoose.model(schemaName, schema)

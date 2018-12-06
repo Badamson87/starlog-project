@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <h3>Star Date Logs</h3>
+    <form @submit.prevent="addLog">
+      <input type="text" v-model="newLog.title" placeholder="name">
+      <input type="text" v-model="newLog.body" placeholder="log">
+      <button type="submit">Add Log</button>
+    </form>
     <logs v-if="log._id" v-for="log in logs" :key="log._id" :logData="log"></logs>
   </div>
 </template>
@@ -15,9 +19,19 @@
     mounted() {
       this.$store.dispatch('getAllLogs')
     },
+    data() {
+      return {
+        newLog: {}
+      }
+    },
     computed: {
       logs() {
         return this.$store.state.logs;
+      }
+    },
+    methods: {
+      addLog() {
+        this.$store.dispatch('addLog', this.newLog)
       }
     },
     components: {
