@@ -53,10 +53,9 @@ export default new Vuex.Store({
         .then(res => commit('setLogs', res.data))
 
     },
-    addLog({ commit }, newLog) {
-      debugger
+    addLog({ commit, dispatch }, newLog) {
       api.post('logs', newLog)
-        .then(res => commit('setLogs', res.data))
+        .then(res => dispatch('getAllLogs'))
     }
 
   }

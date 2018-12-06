@@ -21,7 +21,10 @@
     },
     data() {
       return {
-        newLog: {}
+        newLog: {
+          title: '',
+          body: ''
+        }
       }
     },
     computed: {
@@ -31,7 +34,9 @@
     },
     methods: {
       addLog() {
-        this.$store.dispatch('addLog', this.newLog)
+        this.$store.dispatch('addLog', JSON.parse(JSON.stringify(this.newLog)))
+        this.newLog.title = ''
+        this.newLog.body = ''
       }
     },
     components: {
